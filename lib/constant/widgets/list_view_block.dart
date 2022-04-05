@@ -26,17 +26,31 @@ class ListProductBlockState extends State<ListProductBlock> {
         width: 160,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 2,
+              spreadRadius: 0.01,
+              offset: Offset(0,0)
+            )
+          ]
         ),
         margin: EdgeInsets.all(10),
         child: Stack(
           children: [
             /// [image]
-            CachedNetworkImage(
-              imageUrl: widget.img!,
-              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  Image.asset('assets/img/logo.png'),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-              width: 160,
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
+              ),
+              child: CachedNetworkImage(
+                imageUrl: widget.img!,
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    Image.asset('assets/img/logo.png'),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                width: 160,
+              ),
             ),
     
             /// [fav]
@@ -71,16 +85,19 @@ class ListProductBlockState extends State<ListProductBlock> {
                     bottomRight: Radius.circular(15),
                   ),
                 ),
-                child: Column(
-                  children: [
-                    FittedBox(
-                      child: Text(
+                child: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
                         widget.name!,
-                        style: TextStyle(fontSize: 20),
+                        overflow: TextOverflow.ellipsis,
+                        // style: TextStyle(fontSize: 16),
                       ),
-                    ),
-                    Text(widget.price!)
-                  ],
+                      Text(widget.price!)
+                    ],
+                  ),
                 ),
               ),
             ),

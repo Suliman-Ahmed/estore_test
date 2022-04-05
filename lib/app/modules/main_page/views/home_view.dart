@@ -26,6 +26,9 @@ class _HomeViewState extends State<HomeView> {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     return Scaffold(
+      /// [Background Color]
+      backgroundColor: Colors.white,
+      /// [ App Bar ]
       appBar: AppBar(
         title: CustomText(text: 'ي ستور',fontFamily: 'GESS',),
         centerTitle: true,

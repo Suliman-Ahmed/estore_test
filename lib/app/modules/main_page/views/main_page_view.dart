@@ -58,7 +58,7 @@ class MainPageView extends GetView<MainPageController> {
             color: Colors.transparent,
             padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GNav(
-              textStyle: TextStyle(fontFamily: 'GESS'),
+              textStyle: TextStyle(fontFamily: 'GESS',color: CustomColors.primary),
               rippleColor: Colors.grey[300]!,
               hoverColor: Colors.grey[100]!,
               gap: 8,

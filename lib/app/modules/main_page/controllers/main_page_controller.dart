@@ -25,4 +25,9 @@ class MainPageController extends GetxController {
   @override
   void onClose() {}
   void increment() => count.value++;
+
+  void valueCha(bool value){
+    value = !value;
+    update();
+  }
 }

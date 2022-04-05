@@ -77,7 +77,7 @@ class ListProductBlockState extends State<ListProductBlock> {
               left: 0,
               right: 0,
               child: Container(
-                height: 50,
+                height: 56,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(

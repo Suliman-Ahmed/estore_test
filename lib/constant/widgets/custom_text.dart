@@ -42,7 +42,7 @@ class CustomText extends GetWidget {
             style: TextStyle(
                 color: textColor,
                 fontSize: fontSize,
-                fontWeight: isBoldText ? FontWeight.bold : FontWeight.normal,
+                fontWeight: isBoldText ? FontWeight.w800 : FontWeight.normal,
                 fontFamily: fontFamily,
                 decoration:
                     line ? TextDecoration.lineThrough : TextDecoration.none),

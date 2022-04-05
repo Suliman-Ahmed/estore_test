@@ -13,6 +13,7 @@ class CustomText extends GetWidget {
   var overflow;
   var isBoldText;
   var line;
+  var fontFamily;
 
   CustomText({
     required this.text,
@@ -24,6 +25,7 @@ class CustomText extends GetWidget {
     this.overflow,
     this.line = false,
     this.isBoldText = false,
+    this.fontFamily,
   });
 
   @override
@@ -40,10 +42,10 @@ class CustomText extends GetWidget {
             style: TextStyle(
                 color: textColor,
                 fontSize: fontSize,
-                fontWeight: isBoldText ? FontWeight.bold
-                    : FontWeight.normal,
+                fontWeight: isBoldText ? FontWeight.bold : FontWeight.normal,
+                fontFamily: fontFamily,
                 decoration:
-                line ? TextDecoration.lineThrough : TextDecoration.none),
+                    line ? TextDecoration.lineThrough : TextDecoration.none),
             textAlign: textAlign,
             textDirection: textDirection,
           );

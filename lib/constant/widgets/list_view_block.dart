@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:estore_test/app/modules/main_page/views/detail_view.dart';
 import 'package:estore_test/constant/custom_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
 class ListProductBlock extends StatefulWidget {
@@ -17,67 +20,72 @@ class ListProductBlockState extends State<ListProductBlock> {
   bool isFav = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 160,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      margin: EdgeInsets.all(10),
-      child: Stack(
-        children: [
-          /// [image]
-          Image.asset(
-            widget.img!,
-            fit: BoxFit.cover,
-            width: 160,
-          ),
-
-          /// [img]
-          Positioned(
-            top: 10,
-            left: 10,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  isFav = !isFav;
-                });
-              },
-              child: CircleAvatar(
-                radius: 15,
-                backgroundColor: CustomColors.primary,
-                child: Icon(isFav ? IconlyBold.heart : IconlyLight.heart),
-              ),
+    return InkWell(
+      onTap: () => Get.to(DetailPage()),
+      child: Container(
+        width: 160,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        margin: EdgeInsets.all(10),
+        child: Stack(
+          children: [
+            /// [image]
+            CachedNetworkImage(
+              imageUrl: widget.img!,
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  Image.asset('assets/img/logo.png'),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+              width: 160,
             ),
-          ),
-
-          /// [name and price]
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(15),
-                  bottomRight: Radius.circular(15),
+    
+            /// [fav]
+            Positioned(
+              top: 10,
+              left: 10,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isFav = !isFav;
+                  });
+                },
+                child: CircleAvatar(
+                  radius: 15,
+                  backgroundColor: CustomColors.primary,
+                  child: Icon(isFav ? IconlyBold.heart : IconlyLight.heart),
                 ),
               ),
-              child: Column(
-                children: [
-                  FittedBox(
-                    child: Text(
-                      widget.name!,
-                      style: TextStyle(fontSize: 20),
-                    ),
+            ),
+    
+            /// [name and price]
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(15),
+                    bottomRight: Radius.circular(15),
                   ),
-                  Text(widget.price!)
-                ],
+                ),
+                child: Column(
+                  children: [
+                    FittedBox(
+                      child: Text(
+                        widget.name!,
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                    Text(widget.price!)
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

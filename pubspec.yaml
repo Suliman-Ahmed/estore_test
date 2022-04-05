@@ -12,7 +12,10 @@ dependencies:
   line_icons: 2.0.1
   iconly: 1.0.1
   carousel_pro_nullsafety: 1.0.2
-  flutter_svg:
+  flutter_svg: any
+  carousel_slider: 4.0.0
+  cached_network_image: 3.2.0
+  flutter_html: 2.2.1
   flutter: 
     sdk: flutter
 
@@ -20,17 +23,15 @@ dev_dependencies:
   flutter_test: 
     sdk: flutter
 
-flutter:
-  uses-material-design: true
-  
+flutter: 
   assets: 
     - assets/icons/
     - assets/fonts/
     - assets/img/
     - assets/img/cate/
-
-  fonts:
+  fonts: 
     - family: GESS
-      fonts:
+      fonts: 
         - asset: assets/fonts/GESS.otf
+  uses-material-design: true
 

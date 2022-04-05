@@ -1,10 +1,11 @@
-// import 'package:cached_network_image/cached_network_image.dart';
-// import 'package:carousel_slider/carousel_slider.dart';
-// import 'package:estore_test_1/constants.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:estore_test/constant/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-// import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:get/get.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -40,75 +41,75 @@ class _DetailPageState extends State<DetailPage> {
 
     switch (indexOfColor) {
       case 0:
-        images = Images.blueImages;
+        images = Constants.blueImages;
         break;
       case 1:
-        images = Images.goldImages;
+        images = Constants.goldImages;
         break;
       case 2:
-        images = Images.blackImages;
+        images = Constants.blackImages;
         break;
       case 3:
-        images = Images.silverImages;
+        images = Constants.silverImages;
         break;
       default:
-        images = Images.blueImages;
+        images = Constants.blueImages;
     }
 
     small
         ? images.forEach((element) {
             item.add(
-              InkWell(
-                onTap: () {
-                  carouselController.animateToPage(images.indexOf(element));
-                },
-                child: Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    element,
-                    fit: BoxFit.cover,
-                    width: 65,
-                    height: 65,
-                  ),
-                ),
-              ),
               // InkWell(
               //   onTap: () {
               //     carouselController.animateToPage(images.indexOf(element));
               //   },
-              //   child: Padding(
+              //   child: Container(
+              //     color: Colors.white,
               //     padding: const EdgeInsets.all(8.0),
-              //     child: CachedNetworkImage(
-              //       imageUrl: element!.src,
-              //       progressIndicatorBuilder:
-              //           (context, url, downloadProgress) =>
-              //               Image.asset('assets/image/logo2.png'),
-              //       errorWidget: (context, url, error) => Icon(Icons.error),
+              //     child: Image.asset(
+              //       element,
+              //       fit: BoxFit.cover,
               //       width: 65,
               //       height: 65,
               //     ),
               //   ),
               // ),
+              InkWell(
+                onTap: () {
+                  carouselController.animateToPage(images.indexOf(element));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CachedNetworkImage(
+                    imageUrl: element!,
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) =>
+                            Image.asset('assets/img/logo.png'),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    width: 65,
+                    height: 65,
+                  ),
+                ),
+              ),
             );
           })
         : images.forEach((element) {
             item.add(
-              Image.asset(
-                element,
-                fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width,
-              ),
-              // CachedNetworkImage(
-              //   imageUrl: element!.src,
-              //   progressIndicatorBuilder: (context, url, downloadProgress) =>
-              //       Image.asset('assets/image/logo2.png'),
-              //   errorWidget: (context, url, error) => Icon(Icons.error),
+              // Image.asset(
+              //   element,
+              //   fit: BoxFit.cover,
               //   width: MediaQuery.of(context).size.width,
               //   height: MediaQuery.of(context).size.width,
-              //   fit: BoxFit.cover,
               // ),
+              CachedNetworkImage(
+                imageUrl: element!,
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    Image.asset('assets/img/logo.png'),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                width: Get.width * 0.60,
+                height: Get.width * 0.60,
+                fit: BoxFit.cover,
+              ),
             );
           });
 
@@ -219,7 +220,7 @@ class _DetailPageState extends State<DetailPage> {
           ///////////////////////////////////////
           /// Price
           subtitle: Text(
-            Images.sized[indexOfSize]['price']
+            Constants.sized[indexOfSize]['price']
                     .toString()
                     .replaceAllMapped(reg, mathFunc) +
                 '\$',
@@ -296,7 +297,7 @@ class _DetailPageState extends State<DetailPage> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
           child: Text(
-            Images.des,
+            Constants.des,
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w500,
@@ -352,11 +353,11 @@ class _DetailPageState extends State<DetailPage> {
 
   Widget buildSize() {
     List<Widget> item = [];
-    Images.sized.forEach((element) {
+    Constants.sized.forEach((element) {
       item.add(InkWell(
         onTap: () {
           setState(() {
-            indexOfSize = Images.sized.indexOf(element);
+            indexOfSize = Constants.sized.indexOf(element);
           });
         },
         child: Container(
@@ -364,7 +365,7 @@ class _DetailPageState extends State<DetailPage> {
           margin: EdgeInsets.symmetric(horizontal: 6),
           decoration: BoxDecoration(
             color: Color(
-              indexOfSize == Images.sized.indexOf(element)
+              indexOfSize == Constants.sized.indexOf(element)
                   ? 0xffEF511D
                   : 0xffFFFFFF,
             ).withOpacity(0.2),
@@ -483,7 +484,16 @@ class _DetailPageState extends State<DetailPage> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
-                  child: Image.asset('assets/image/1.png'),
+                  child: CachedNetworkImage(
+                    imageUrl: Constants.blackImages[0],
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) =>
+                            Image.asset('assets/img/logo.png'),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    width: Get.width,
+                    height: Get.width,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               //////////////////////////////////////////////////////////////////
@@ -520,7 +530,8 @@ class _DetailPageState extends State<DetailPage> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Color(0xffEF511D),
-                      ),padding: EdgeInsets.all(8),
+                      ),
+                      padding: EdgeInsets.all(8),
                       child: Icon(
                         Icons.shopping_cart,
                         color: Colors.white,

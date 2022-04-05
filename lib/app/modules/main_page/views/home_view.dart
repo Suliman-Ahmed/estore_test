@@ -27,10 +27,13 @@ class _HomeViewState extends State<HomeView> {
     height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: CustomText(text: 'ي ستور'),
+        title: CustomText(text: 'ي ستور',fontFamily: 'GESS',),
         centerTitle: true,
         elevation: 0,
       ),
+      ///
+      drawer: Drawer(),
+      /// 
       body: SafeArea(
         child: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (OverscrollIndicatorNotification overscroll) {
@@ -51,11 +54,11 @@ class _HomeViewState extends State<HomeView> {
 
               /// [new Products]
               buildShowAll('وصلنا حديثا'),
-              buildListOfProducts(),
+              buildListOfProducts(Constants.productList),
 
               /// [new Products]
               buildShowAll('أجهزة رائدة'),
-              buildListOfProducts(),
+              buildListOfProducts(Constants.cablesList),
 
               /// [common sections]
               Container(
@@ -66,6 +69,15 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
               buildCommonSections(),
+
+              
+              /// [Starred Products]
+              buildShowAll('مميزة'),
+              buildListOfProducts(Constants.productList),
+
+              /// [new Products]
+              buildShowAll('كفرات'),
+              buildListOfProducts(Constants.cablesList),
             ],
           ),
         ),
@@ -167,17 +179,17 @@ class _HomeViewState extends State<HomeView> {
           ],
         ),
       );
-  buildListOfProducts() => Container(
+  buildListOfProducts(List items) => Container(
         height: 225,
         width: double.infinity,
         child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          itemCount: Constants.productList.length,
+          itemCount: items.length,
           itemBuilder: (BuildContext context, int index) => ListProductBlock(
-            name: Constants.productList[index]['name'],
-            img: Constants.productList[index]['img'],
-            price: Constants.productList[index]['price'],
+            name: items[index]['name'],
+            img: items[index]['img'],
+            price: items[index]['price'],
           ),
         ),
       );

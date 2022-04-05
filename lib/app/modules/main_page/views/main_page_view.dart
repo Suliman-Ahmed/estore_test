@@ -38,7 +38,11 @@ class MainPageView extends GetView<MainPageController> {
         ),
       ),
       bottomNavigationBar: Container(
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.only(
+          bottom: 10,
+          right: 10,
+          left: 10,
+        ),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -50,8 +54,9 @@ class MainPageView extends GetView<MainPageController> {
           ],
         ),
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+          child: Container(
+            color: Colors.transparent,
+            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GNav(
               rippleColor: Colors.grey[300]!,
               hoverColor: Colors.grey[100]!,
@@ -65,19 +70,19 @@ class MainPageView extends GetView<MainPageController> {
               tabs: [
                 GButton(
                   icon: IconlyBold.home,
-                  text: 'Home',
+                  text: 'الرئيسية',
                 ),
                 GButton(
                   icon: IconlyBold.document,
-                  text: 'Ordera',
+                  text: 'الطلبيات',
                 ),
                 GButton(
                   icon: IconlyBold.buy,
-                  text: 'Buy',
+                  text: 'سلتي',
                 ),
                 GButton(
                   icon: IconlyBold.profile,
-                  text: 'Profile',
+                  text: 'ملف الشخصي',
                 ),
               ],
               selectedIndex: _selectedIndex!,

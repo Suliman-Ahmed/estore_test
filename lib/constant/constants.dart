@@ -3,6 +3,22 @@ class Constants{
 
   static String text = '';
 
+  static List commonCategory = [
+    'assets/img/cate/buds.png',
+    'assets/img/cate/tv.png',
+    'assets/img/cate/charger.png',
+    'assets/img/cate/power.png',
+    'assets/img/cate/mouse.png',
+    'assets/img/cate/keyboard.png',
+    'assets/img/cate/hard.png',
+    'assets/img/cate/games.png',
+    'assets/img/cate/case.png',
+    'assets/img/cate/appli_gift_card.png',
+    'assets/img/cate/bug.png',
+    'assets/img/cate/watch.png',
+    'assets/img/cate/headset.png',
+  ];
+
 
 
   static List productList = [
@@ -15,7 +31,7 @@ class Constants{
     },
     {
       'img' : 'assets/img/p2.png',
-      'name' : 'PS5',
+      'name' : 'PS 5',
       'price' : '810 \$',
       'colors' : [],
       'des' : 'this some dumb text work any where ....',

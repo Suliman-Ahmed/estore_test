@@ -22,13 +22,15 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-   
+  
   assets: 
     - assets/icons/
-    - assets/icons/new.svg
-    - assets/icons/marks.svg
-    - assets/icons/sales.svg
-    - assets/icons/offers.svg
-    - assets/icons/special.svg
+    - assets/fonts/
     - assets/img/
+    - assets/img/cate/
+
+  fonts:
+    - family: GESS
+      fonts:
+        - asset: assets/fonts/GESS.otf
 

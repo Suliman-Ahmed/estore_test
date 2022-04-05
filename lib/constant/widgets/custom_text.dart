@@ -1,7 +1,7 @@
+import 'package:estore_test/app/modules/main_page/controllers/main_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-///This custom text is used to unify the text style of the app
 // ignore: must_be_immutable
 class CustomText extends GetWidget {
   final String text;
@@ -11,8 +11,6 @@ class CustomText extends GetWidget {
   var textAlign;
   var textDirection;
   var overflow;
-  var iprefText;
-  var font;
   var isBoldText;
   var line;
 
@@ -20,22 +18,22 @@ class CustomText extends GetWidget {
     required this.text,
     this.padding,
     this.textColor,
-    this.fontSize = 2,
+    this.fontSize,
     this.textAlign,
     this.textDirection,
     this.overflow,
-    this.font = false,
     this.line = false,
     this.isBoldText = false,
-    this.iprefText = false, //if the text should use the prefrences color
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: padding ?? EdgeInsets.all(0),
-      child: GetX(
+      child: GetX<MainPageController>(
+        init: MainPageController(),
         builder: (s) {
+          int ind = s.selectedIndex;
           return Text(
             text.tr,
             overflow: overflow,
@@ -44,7 +42,6 @@ class CustomText extends GetWidget {
                 fontSize: fontSize,
                 fontWeight: isBoldText ? FontWeight.bold
                     : FontWeight.normal,
-                // fontFamily: !font ? 'Tajawal' : 'TajawalBlack',
                 decoration:
                 line ? TextDecoration.lineThrough : TextDecoration.none),
             textAlign: textAlign,

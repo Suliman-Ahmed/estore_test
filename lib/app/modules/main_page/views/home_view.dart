@@ -1,6 +1,8 @@
 import 'package:carousel_pro_nullsafety/carousel_pro_nullsafety.dart';
 import 'package:estore_test/constant/constants.dart';
 import 'package:estore_test/constant/custom_colors.dart';
+import 'package:estore_test/constant/widgets/custom_text.dart';
+import 'package:estore_test/constant/widgets/list_view_block.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconly/iconly.dart';
@@ -25,28 +27,47 @@ class _HomeViewState extends State<HomeView> {
     height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomeView'),
+        title: CustomText(text: 'ي ستور'),
         centerTitle: true,
         elevation: 0,
       ),
       body: SafeArea(
-        child: ListView(
-          shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
-          children: [
-            /// [Srarch bar]
-            buildSearchBar(),
+        child: NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (OverscrollIndicatorNotification overscroll) {
+            overscroll.disallowGlow();
+            return true;
+          },
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              /// [Srarch bar]
+              buildSearchBar(),
 
-            /// [Image Slider]
-            buildCarousel(),
+              /// [Image Slider]
+              buildCarousel(),
 
-            /// [Category]
-            buildCate(),
+              /// [Category]
+              buildCate(),
 
-            /// [new Products]
-            buildShowAll('وصلنا حديثا'),
-            buildListOfProducts(),
-          ],
+              /// [new Products]
+              buildShowAll('وصلنا حديثا'),
+              buildListOfProducts(),
+
+              /// [new Products]
+              buildShowAll('أجهزة رائدة'),
+              buildListOfProducts(),
+
+              /// [common sections]
+              Container(
+                margin: EdgeInsets.all(10),
+                child: CustomText(
+                  text: 'أقسام شائعة',
+                  textDirection: TextDirection.rtl,
+                ),
+              ),
+              buildCommonSections(),
+            ],
+          ),
         ),
       ),
     );
@@ -66,7 +87,7 @@ class _HomeViewState extends State<HomeView> {
               cursorColor: CustomColors.primary,
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Search...',
+                  hintText: 'هل تبحث عن منتج معين...',
                   suffixIcon: Icon(IconlyBroken.search)),
             ),
           ),
@@ -116,13 +137,13 @@ class _HomeViewState extends State<HomeView> {
                               color: CustomColors.primary),
                           child: SvgPicture.asset(
                             item['img'],
-                            width: 20,
-                            height: 20,
+                            width: 25,
+                            height: 25,
                           ),
                           // child: Image.asset('assets/img/ipad6.jpg',width: 20,),
                         ),
                         SizedBox(height: 10),
-                        Text(item['text']),
+                        CustomText(text: item['text']),
                       ],
                     ),
                   ))
@@ -131,32 +152,55 @@ class _HomeViewState extends State<HomeView> {
       );
 
   buildShowAll(String text) => Padding(
-    padding: EdgeInsets.all(8.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(text),
-        Row(
+        padding: EdgeInsets.all(10.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('أظهار الكل'),
-            Icon(IconlyLight.arrow_right),
+            Row(
+              children: [
+                CustomText(text: 'أظهار الكل'),
+                SizedBox(width: 15),
+                Icon(IconlyLight.arrow_left_2),
+              ],
+            ),
+            CustomText(text: text),
           ],
-        )
-      ],
-    ),
-  );
+        ),
+      );
   buildListOfProducts() => Container(
-    height: 200,
-    width: double.infinity,
-    child: ListView.builder(
+        height: 225,
+        width: double.infinity,
+        child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: Constants.productList.length,
-          itemBuilder: (BuildContext context, int index) => Container(
-            margin: EdgeInsets.all(20),
-            color: Colors.black38,
-            child: Text('Product ${index + 1}'),
+          itemBuilder: (BuildContext context, int index) => ListProductBlock(
+            name: Constants.productList[index]['name'],
+            img: Constants.productList[index]['img'],
+            price: Constants.productList[index]['price'],
           ),
         ),
+      );
+
+  buildCommonSections() => Container(
+    width: double.infinity,
+    height: 100,
+    child: ListView.builder(
+      itemCount: Constants.commonCategory.length,
+      scrollDirection: Axis.horizontal,
+      reverse: true,
+      shrinkWrap: true,
+      itemBuilder: (BuildContext context, int index) => Container(
+        width: 75,
+        height: 75,
+        margin: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          border: Border.all(width: 0.2,color: Colors.grey),
+        ),
+        child: Image.asset(Constants.commonCategory[index]),
+      ),
+    ),
   );
 }

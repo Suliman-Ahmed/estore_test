@@ -23,7 +23,7 @@ class CatagoryView extends GetView<MainPageController> {
           children: [
             Expanded(child: buildCategoryList()),
             Expanded(
-                child: Column(
+                child: ListView(
               children: [
                 buildSubCategoryList(),
               ],
@@ -31,6 +31,26 @@ class CatagoryView extends GetView<MainPageController> {
           ],
         ));
   }
+
+  Widget buildSubsubCatList() => Obx(() => Container(
+        child: Constants
+                    .categoryItem[controller.getCatItemIndex]['items'][0]
+                        ['items']
+                    .length ==
+                0
+            ? Image.asset('assets/img/logo.png')
+            : ListView.builder(
+                itemCount: Constants
+                    .categoryItem[controller.getCatItemIndex]['items']
+                        [controller.getSubCatItemIndex]['items']
+                    .length,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (ctx, index) => ListTile(
+                  title: Text('Testing'),
+                ),
+              ),
+      ));
 
   Widget buildSubCategoryList() => Obx(
         () => Container(
@@ -72,6 +92,11 @@ class CatagoryView extends GetView<MainPageController> {
                               controller.changeSubCatItem(index);
                               // print(controller.getCatItemIndex);
                             },
+
+                            /// [indide list]
+                            subtitle: controller.getSubCatItemIndex == index
+                                ? buildSubsubCatList()
+                                : SizedBox(),
                           ),
                         ));
                   },
@@ -111,7 +136,8 @@ class CatagoryView extends GetView<MainPageController> {
                     onTap: () {
                       controller.changeCatItem(index);
                       // print(Constants
-                      //     .categoryItem[controller.getCatItemIndex]['items']
+                      //     .categoryItem[controller.getCatItemIndex]['items'][controller.getSubCatItemIndex]
+                      //         ['items']
                       //     .length
                       //     .toString());
                     },

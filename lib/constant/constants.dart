@@ -166,52 +166,69 @@ class Constants {
   static List categoryItem = [
     {
       'title': 'الاجهزة',
-      'items' : [
+      'items': [
         {
-          'title' : 'الهواتف',
-          'items' : [],
+          'title': 'الهواتف',
+          'items': [
+            {'title': 'ابل', 'items': []},
+            {'title': 'سامسونك', 'items': []},
+            {'title': 'ون بلص', 'items': []},
+            {'title': 'أوبو', 'items': []},
+            {'title': 'ريلمي', 'items': []},
+            {'title': 'شاومي', 'items': []},
+            {'title': 'فيفو', 'items': []},
+            {'title': 'أنفنكس', 'items': []},
+            {'title': 'أجهزة أخرى', 'items': []},
+            {'title': 'عرض الكل', 'items': []},
+
+          ],
         },
         {
-          'title' : 'أجهزة لوحية',
-          'items' : [],
+          'title': 'أجهزة لوحية',
+          'items': [
+            {'title': 'أيباد أبل', 'items': []},
+            {'title': 'تابلت سامسونك', 'items': []},
+            {'title': 'أخرى', 'items': []},
+            {'title': 'عرض الكل', 'items': []},
+          ],
         },
       ],
     },
     {
       'title': 'لابتوب',
-      'items' : [],
+      'items': [],
     },
     {
       'title': 'ساعات ذكية',
-      'items' : [],
+      'items': [],
     },
     {
       'title': 'كيبلات وشواحن',
-      'items' : [],
+      'items': [],
     },
     {
       'title': 'كفرات',
-      'items' : [],
+      'items': [],
     },
     {
       'title': 'أكسسوارات',
-      'items' : [],
+      'items': [],
     },
     {
       'title': 'العاب',
-      'items' : [],
+      'items': [],
     },
     {
       'title': 'بنوك الطاقة',
-      'items' : [],
+      'items': [],
     },
     {
       'title': 'صوتيات',
-      'items' : [],
+      'items': [],
     },
     {
       'title': 'أخرى',
-      'items' : [],
+      'items': [],
     },
   ];
 

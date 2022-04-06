@@ -1,6 +1,6 @@
 import 'package:estore_test/app/modules/main_page/views/buy_view.dart';
 import 'package:estore_test/app/modules/main_page/views/home_view.dart';
-import 'package:estore_test/app/modules/main_page/views/order_view.dart';
+import 'package:estore_test/app/modules/main_page/views/catagory_view.dart';
 import 'package:estore_test/app/modules/main_page/views/profile_view.dart';
 import 'package:estore_test/constant/custom_colors.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ import '../controllers/main_page_controller.dart';
 class MainPageView extends GetView<MainPageController> {
   List<Widget> _pages = [
     HomeView(),
-    OrderView(),
+    CatagoryView(),
     BuyView(),
     ProfileView(),
   ];
@@ -75,7 +75,7 @@ class MainPageView extends GetView<MainPageController> {
                 ),
                 GButton(
                   icon: IconlyBold.document,
-                  text: 'الطلبيات',
+                  text: 'التصنيفات',
                 ),
                 GButton(
                   icon: IconlyBold.buy,
@@ -83,7 +83,7 @@ class MainPageView extends GetView<MainPageController> {
                 ),
                 GButton(
                   icon: IconlyBold.profile,
-                  text: 'ملف الشخصي',
+                  text: 'بروفايل',
                 ),
               ],
               selectedIndex: _selectedIndex!,

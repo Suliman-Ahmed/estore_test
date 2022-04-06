@@ -28,14 +28,16 @@ class Constants {
       'des': 'this some dumb text work any where ....',
     },
     {
-      'img': 'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-44.png',
+      'img':
+          'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-44.png',
       'name': 'One Plus Nord 10',
       'price': '225 \$',
       'colors': ['0xff131313'],
       'des': 'this some dumb text work any where ....',
     },
     {
-      'img': 'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-99.png',
+      'img':
+          'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-99.png',
       'name': 'Oppo Reno 6 5G',
       'price': '475 \$',
       'colors': ['0xffD9E6D1', '0xff313131'],
@@ -49,56 +51,64 @@ class Constants {
       'des': 'this some dumb text work any where ....',
     },
     {
-      'img': 'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-114.png',
+      'img':
+          'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-114.png',
       'name': 'Poco M4 pro 5G',
       'price': '225 \$',
       'colors': [],
       'des': 'this some dumb text work any where ....',
     },
     {
-      'img': 'https://estoreiraq.com/wp-content/uploads/2022/02/picbox-1-25.png',
+      'img':
+          'https://estoreiraq.com/wp-content/uploads/2022/02/picbox-1-25.png',
       'name': 'Realme 9i',
       'price': '170 \$',
       'colors': [],
       'des': 'this some dumb text work any where ....',
     },
     {
-      'img': 'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-176.png',
+      'img':
+          'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-176.png',
       'name': 'Red Magic 6s Pro',
       'price': '740 \$',
       'colors': ['0xff313131'],
       'des': 'this some dumb text work any where ....',
     },
     {
-      'img': 'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-83.png',
+      'img':
+          'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-83.png',
       'name': 'Samsung Note 20 Ultra Snap',
       'price': '1020 \$',
       'colors': ['0xff313131'],
       'des': 'this some dumb text work any where ....',
     },
     {
-      'img': 'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-2-23.png',
+      'img':
+          'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-2-23.png',
       'name': 'TCL 10 Plus',
       'price': '300 \$',
       'colors': [],
       'des': 'this some dumb text work any where ....',
     },
     {
-      'img': 'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-%E2%80%93-2-1.png',
+      'img':
+          'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-%E2%80%93-2-1.png',
       'name': 'Vivo Y1s',
       'price': '95 \$',
       'colors': [],
       'des': 'this some dumb text work any where ....',
     },
     {
-      'img': 'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-138.png',
+      'img':
+          'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-138.png',
       'name': 'Vivo Y21',
       'price': '140 \$',
       'colors': [],
       'des': 'this some dumb text work any where ....',
     },
     {
-      'img': 'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-89.png',
+      'img':
+          'https://estoreiraq.com/wp-content/uploads/2021/12/picbox-1-89.png',
       'name': 'Xiaomi 11T',
       'price': '351 \$',
       'colors': ['0xffD9E6D1', '0xff313131'],
@@ -106,10 +116,10 @@ class Constants {
     },
   ];
 
-
   static List cablesList = [
     {
-      'img': 'https://estoreiraq.com/wp-content/uploads/2021/11/picbox-1-159.png',
+      'img':
+          'https://estoreiraq.com/wp-content/uploads/2021/11/picbox-1-159.png',
       'name': 'Apple MagSafe Due Charger',
       'price': '120 \$',
       'colors': [],
@@ -144,7 +154,8 @@ class Constants {
       'des': 'this some dumb text work any where ....',
     },
     {
-      'img': 'https://estoreiraq.com/wp-content/uploads/2021/11/picbox-%E2%80%93-1-24.png',
+      'img':
+          'https://estoreiraq.com/wp-content/uploads/2021/11/picbox-%E2%80%93-1-24.png',
       'name': 'كيبل شحن Ravpower تايب سي ايفون',
       'price': '20 \$',
       'colors': [],
@@ -152,6 +163,57 @@ class Constants {
     },
   ];
 
+  static List categoryItem = [
+    {
+      'title': 'الاجهزة',
+      'items' : [
+        {
+          'title' : 'الهواتف',
+          'items' : [],
+        },
+        {
+          'title' : 'أجهزة لوحية',
+          'items' : [],
+        },
+      ],
+    },
+    {
+      'title': 'لابتوب',
+      'items' : [],
+    },
+    {
+      'title': 'ساعات ذكية',
+      'items' : [],
+    },
+    {
+      'title': 'كيبلات وشواحن',
+      'items' : [],
+    },
+    {
+      'title': 'كفرات',
+      'items' : [],
+    },
+    {
+      'title': 'أكسسوارات',
+      'items' : [],
+    },
+    {
+      'title': 'العاب',
+      'items' : [],
+    },
+    {
+      'title': 'بنوك الطاقة',
+      'items' : [],
+    },
+    {
+      'title': 'صوتيات',
+      'items' : [],
+    },
+    {
+      'title': 'أخرى',
+      'items' : [],
+    },
+  ];
 
   static List cate = [
     {

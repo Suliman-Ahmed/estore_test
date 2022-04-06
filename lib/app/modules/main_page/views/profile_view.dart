@@ -1,5 +1,4 @@
 import 'package:cat_avatar_generator/cat_avatar_generator.dart';
-import 'package:estore_test/app/modules/main_page/controllers/main_page_controller.dart';
 import 'package:estore_test/constant/custom_colors.dart';
 import 'package:estore_test/constant/widgets/custom_text.dart';
 import 'package:flutter/material.dart';

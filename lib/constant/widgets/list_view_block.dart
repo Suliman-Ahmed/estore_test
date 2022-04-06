@@ -25,6 +25,7 @@ class ListProductBlockState extends State<ListProductBlock> {
       child: Container(
         width: 160,
         decoration: BoxDecoration(
+          color: Colors.white,
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(

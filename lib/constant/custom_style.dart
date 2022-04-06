@@ -8,6 +8,7 @@ class CustomTheme{
     // fontFamily: 'GESS',
     primaryColor: CustomColors.primary,
     backgroundColor: Colors.white,
+    scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
       backgroundColor: CustomColors.primary,
       centerTitle: true,

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconly/iconly.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../controllers/main_page_controller.dart';
 
@@ -74,11 +75,12 @@ class MainPageView extends GetView<MainPageController> {
                   text: 'الرئيسية',
                 ),
                 GButton(
-                  icon: IconlyBold.document,
+                  icon: IconlyBold.category,
                   text: 'التصنيفات',
                 ),
                 GButton(
                   icon: IconlyBold.buy,
+                  // icon: Iconsax.bag,
                   text: 'سلتي',
                 ),
                 GButton(

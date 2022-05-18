@@ -9,8 +9,9 @@ class ListProductBlock extends StatefulWidget {
   final String? name;
   final String? img;
   final String? price;
+  final String? index;
 
-  ListProductBlock({this.name, this.img, this.price});
+  ListProductBlock({this.name, this.img, this.price, this.index});
 
   @override
   ListProductBlockState createState() => ListProductBlockState();
@@ -21,39 +22,46 @@ class ListProductBlockState extends State<ListProductBlock> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(DetailPage()),
+      onTap: () {
+        Get.to(() => DetailPage(
+            name: widget.name, price: widget.price, index: widget.index));
+        print('${widget.index}');
+      },
       child: Container(
         width: 160,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
+          // border: Border.all(width: 0.3,color: Colors.grey)
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 2,
-              spreadRadius: 0.01,
-              offset: Offset(0,0)
-            )
-          ]
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 2,
+                spreadRadius: 0.01,
+                offset: Offset(0, 0))
+          ],
         ),
         margin: EdgeInsets.all(10),
         child: Stack(
           children: [
             /// [image]
-            ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(15),
-                topRight: Radius.circular(15),
-              ),
-              child: CachedNetworkImage(
-                imageUrl: widget.img!,
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    Image.asset('assets/img/logo.png'),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-                width: 160,
+            Hero(
+              tag: widget.index.toString(),
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: widget.img!,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      Image.asset('assets/img/logo.png'),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  width: 160,
+                ),
               ),
             ),
-    
+
             /// [fav]
             Positioned(
               top: 10,
@@ -71,7 +79,7 @@ class ListProductBlockState extends State<ListProductBlock> {
                 ),
               ),
             ),
-    
+
             /// [name and price]
             Positioned(
               bottom: 0,

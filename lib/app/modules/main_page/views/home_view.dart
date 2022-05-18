@@ -28,15 +28,21 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       /// [Background Color]
       backgroundColor: Colors.white,
+
       /// [ App Bar ]
       appBar: AppBar(
-        title: CustomText(text: 'ي ستور',fontFamily: 'GESS',),
+        title: CustomText(
+          text: 'ي ستور',
+          fontFamily: 'GESS',
+        ),
         centerTitle: true,
         elevation: 0,
       ),
+
       ///
       drawer: Drawer(),
-      /// 
+
+      ///
       body: SafeArea(
         child: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (OverscrollIndicatorNotification overscroll) {
@@ -57,11 +63,11 @@ class _HomeViewState extends State<HomeView> {
 
               /// [new Products]
               buildShowAll('وصلنا حديثا'),
-              buildListOfProducts(Constants.productList),
+              buildListOfProducts(Constants.productList, 'phoneTag'),
 
               /// [new Products]
               buildShowAll('أجهزة رائدة'),
-              buildListOfProducts(Constants.cablesList),
+              buildListOfProducts(Constants.cablesList, 'chargerTag'),
 
               /// [common sections]
               Container(
@@ -73,14 +79,13 @@ class _HomeViewState extends State<HomeView> {
               ),
               buildCommonSections(),
 
-              
               /// [Starred Products]
               buildShowAll('مميزة'),
-              buildListOfProducts(Constants.productList),
+              buildListOfProducts(Constants.productList, 'gameTag'),
 
               /// [new Products]
               buildShowAll('كفرات'),
-              buildListOfProducts(Constants.cablesList),
+              buildListOfProducts(Constants.cablesList, 'coversTag'),
             ],
           ),
         ),
@@ -100,10 +105,15 @@ class _HomeViewState extends State<HomeView> {
                 borderRadius: BorderRadius.circular(10), color: Colors.white),
             child: TextField(
               cursorColor: CustomColors.primary,
+              style: TextStyle(fontFamily: 'GESS'),
               decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'هل تبحث عن منتج معين...',
-                  suffixIcon: Icon(IconlyBroken.search)),
+                  hintStyle: TextStyle(color: Colors.black.withOpacity(.5)),
+                  suffixIcon: Icon(
+                    IconlyBroken.search,
+                    color: CustomColors.primary,
+                  )),
             ),
           ),
         ),
@@ -182,7 +192,10 @@ class _HomeViewState extends State<HomeView> {
           ],
         ),
       );
-  buildListOfProducts(List items) => Container(
+
+  /////////////////////////////////////////////////////////////
+  // Build List Of Items
+  buildListOfProducts(List items, String tag) => Container(
         height: 225,
         width: double.infinity,
         child: ListView.builder(
@@ -190,32 +203,40 @@ class _HomeViewState extends State<HomeView> {
           scrollDirection: Axis.horizontal,
           itemCount: items.length,
           itemBuilder: (BuildContext context, int index) => ListProductBlock(
-            name: items[index]['name'],
-            img: items[index]['img'],
-            price: items[index]['price'],
-          ),
+              name: items[index]['name'],
+              img: items[index]['img'],
+              price: items[index]['price'],
+              index: tag + index.toString()),
         ),
       );
 
+  /////////////////////////////////////////////////////////////
   buildCommonSections() => Container(
-    width: double.infinity,
-    height: 100,
-    child: ListView.builder(
-      itemCount: Constants.commonCategory.length,
-      scrollDirection: Axis.horizontal,
-      reverse: true,
-      shrinkWrap: true,
-      itemBuilder: (BuildContext context, int index) => Container(
-        width: 75,
-        height: 75,
-        margin: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
-          border: Border.all(width: 0.2,color: Colors.grey),
+        width: double.infinity,
+        height: 100,
+        child: ListView.builder(
+          itemCount: Constants.commonIcon.length,
+          scrollDirection: Axis.horizontal,
+          // reverse: true,
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context, int index) => Container(
+            width: 75,
+            height: 75,
+            padding: EdgeInsets.all(20),
+            margin: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              // borderRadius: BorderRadius.circular(10),
+              color: CustomColors.primary,
+              // border: Border.all(width: 0.2, color: Colors.grey),
+            ),
+            child: SvgPicture.asset(
+              Constants.commonIcon[index], color: Colors.white,
+              width: 15,
+              height: 15,
+            ),
+            // child: Image.asset(Constants.commonCategory[index]),
+          ),
         ),
-        child: Image.asset(Constants.commonCategory[index]),
-      ),
-    ),
-  );
+      );
 }

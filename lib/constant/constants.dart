@@ -3,6 +3,17 @@ class Constants {
 
   static String text = '';
 
+  static List commonIcon = [
+    'assets/icons/common/earbuds.svg',
+    'assets/icons/common/game.svg',
+    'assets/icons/common/harddrive.svg',
+    'assets/icons/common/keyboard.svg',
+    'assets/icons/common/mouse.svg',
+    'assets/icons/common/phonetablet.svg',
+    'assets/icons/common/tv.svg',
+    'assets/icons/common/watch.svg',
+  ];
+
   static List commonCategory = [
     'assets/img/cate/buds.png',
     'assets/img/cate/tv.png',

@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:estore_test/constant/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({Key? key}) : super(key: key);
+  const DetailPage({Key? key, this.name, this.price, this.index})
+      : super(key: key);
+  final String? name;
+  final String? price;
+  final String? index;
 
   @override
   _DetailPageState createState() => _DetailPageState();
@@ -59,21 +60,6 @@ class _DetailPageState extends State<DetailPage> {
     small
         ? images.forEach((element) {
             item.add(
-              // InkWell(
-              //   onTap: () {
-              //     carouselController.animateToPage(images.indexOf(element));
-              //   },
-              //   child: Container(
-              //     color: Colors.white,
-              //     padding: const EdgeInsets.all(8.0),
-              //     child: Image.asset(
-              //       element,
-              //       fit: BoxFit.cover,
-              //       width: 65,
-              //       height: 65,
-              //     ),
-              //   ),
-              // ),
               InkWell(
                 onTap: () {
                   carouselController.animateToPage(images.indexOf(element));
@@ -95,18 +81,12 @@ class _DetailPageState extends State<DetailPage> {
           })
         : images.forEach((element) {
             item.add(
-              // Image.asset(
-              //   element,
-              //   fit: BoxFit.cover,
-              //   width: MediaQuery.of(context).size.width,
-              //   height: MediaQuery.of(context).size.width,
-              // ),
               CachedNetworkImage(
                 imageUrl: element!,
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     Image.asset('assets/img/logo.png'),
                 errorWidget: (context, url, error) => Icon(Icons.error),
-                width: Get.width * 0.60,
+                width: Get.width,
                 height: Get.width * 0.60,
                 fit: BoxFit.cover,
               ),
@@ -153,49 +133,52 @@ class _DetailPageState extends State<DetailPage> {
       children: [
         ////////////////////////////////////////////////////////////////////////
         /// Image
-        Stack(
-          children: [
-            CarouselSlider(
-              items: items(),
-              carouselController: carouselController,
-              options: CarouselOptions(
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
-                  enlargeCenterPage: true,
-                  initialPage: 0,
-                  height: MediaQuery.of(context).size.width,
-                  viewportFraction: 1,
-                  onPageChanged: (index, chan) {
-                    indexOfImage = index;
-                    setState(() {});
-                  }),
-            ),
-            //////////////////////
-            /// Dote
-            Positioned(
-              bottom: 0,
-              left: 0,
-              child: SizedBox(
-                height: 30,
-                width: MediaQuery.of(context).size.width / 2,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: items().length,
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  itemBuilder: (c, i) => Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: CircleAvatar(
-                      radius: 6,
-                      backgroundColor: indexOfImage == i
-                          ? const Color(0xFFEF511D)
-                          : const Color(0xFFEF511D).withOpacity(.5),
+        Hero(
+          tag: widget.index.toString(),
+          child: Stack(
+            children: [
+              CarouselSlider(
+                items: items(),
+                carouselController: carouselController,
+                options: CarouselOptions(
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 3),
+                    enlargeCenterPage: true,
+                    initialPage: 0,
+                    height: MediaQuery.of(context).size.width,
+                    viewportFraction: 1,
+                    onPageChanged: (index, chan) {
+                      indexOfImage = index;
+                      setState(() {});
+                    }),
+              ),
+              //////////////////////
+              /// Dote
+              Positioned(
+                bottom: 0,
+                left: 0,
+                child: SizedBox(
+                  height: 30,
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: items().length,
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    itemBuilder: (c, i) => Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: CircleAvatar(
+                        radius: 6,
+                        backgroundColor: indexOfImage == i
+                            ? const Color(0xFFEF511D)
+                            : const Color(0xFFEF511D).withOpacity(.5),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            ////////////////////////////////////////////////////////////////////
-          ],
+              ////////////////////////////////////////////////////////////////////
+            ],
+          ),
         ),
         ////////////////////////////////////////////////////////////////////////
         /// List Of Images
@@ -220,10 +203,7 @@ class _DetailPageState extends State<DetailPage> {
           ///////////////////////////////////////
           /// Price
           subtitle: Text(
-            Constants.sized[indexOfSize]['price']
-                    .toString()
-                    .replaceAllMapped(reg, mathFunc) +
-                '\$',
+            widget.price.toString().replaceAllMapped(reg, mathFunc) + '\$',
             style: TextStyle(
               fontSize: 20,
               color: Colors.black45,

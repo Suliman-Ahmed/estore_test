@@ -5,7 +5,7 @@ class CustomTheme{
   CustomTheme._();
 
   static style1() => ThemeData(
-    // fontFamily: 'GESS',
+    fontFamily: 'TAHO',
     primaryColor: CustomColors.primary,
     backgroundColor: Colors.white,
     scaffoldBackgroundColor: Colors.white,

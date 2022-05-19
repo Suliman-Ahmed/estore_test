@@ -191,7 +191,6 @@ class Constants {
             {'title': 'أنفنكس', 'items': []},
             {'title': 'أجهزة أخرى', 'items': []},
             {'title': 'عرض الكل', 'items': []},
-
           ],
         },
         {
@@ -207,7 +206,19 @@ class Constants {
     },
     {
       'title': 'لابتوب',
-      'items': [],
+      'items': [
+        {
+          'title': 'Apple Macbook Pro',
+          'items': [
+            {'title': 'Macbook Pro 16\"', 'items': []},
+            {'title': 'Macbook Pro 14\"', 'items': []},
+            {'title': 'Macbook Pro 16\" 512GB', 'items': []},
+            {'title': 'عرض الكل', 'items': []},
+          ]
+        },
+        {'title': 'Apple Macbook Air', 'items': []},
+        {'title': 'Huawei Matebook', 'items': []},
+      ],
     },
     {
       'title': 'ساعات ذكية',
@@ -336,4 +347,7 @@ iPhone 13 Pro Max
   لم يتم تطوير سرعات الشحن .
   وزن الهاتف ثقيل و حجمه كبير كما ان الحواف المسطحة صعبة في مسك الهاتف بالأيد .
   """;
+
+
+  static String EMPTY_CART = 'assets/img/empty_cart.svg';
 }

@@ -44,15 +44,16 @@ class CatagoryView extends GetView<MainPageController> {
                       .length ==
                   0
               ? Image.asset('assets/img/logo.png')
-              : ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: Constants
-                      .categoryItem[controller.getCatItemIndex]['items'].length,
-                  physics: BouncingScrollPhysics(),
-                  itemBuilder: (ctx, index) {
-                    return Obx(() => buildSubItem(ctx, index));
-                  },
-                ),
+              : Obx(() => ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: Constants
+                        .categoryItem[controller.getCatItemIndex]['items']
+                        .length,
+                    physics: BouncingScrollPhysics(),
+                    itemBuilder: (ctx, index) {
+                      return Obx(() => buildSubItem(ctx, index));
+                    },
+                  )),
         ),
       );
 
@@ -123,9 +124,12 @@ class CatagoryView extends GetView<MainPageController> {
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (ctx, index) => ListTile(
                   title: CustomText(
-                      text: Constants.categoryItem[controller.getCatItemIndex]
-                              ['items'][0]['items'][index]['title']
-                          .toString(),fontFamily: 'GESS',),
+                    text: Constants.categoryItem[controller.getCatItemIndex]
+                            ['items'][controller.getSubCatItemIndex]['items']
+                            [index]['title']
+                        .toString(),
+                    fontFamily: 'GESS',
+                  ),
                   onTap: () {},
                 ),
               ),
@@ -170,6 +174,7 @@ class CatagoryView extends GetView<MainPageController> {
         /// [Function]
         onTap: () {
           controller.changeCatItem(index);
+          controller.changeSubCatItem(0);
           // print(Constants
           //     .categoryItem[controller.getCatItemIndex]['items'][controller.getSubCatItemIndex]
           //         ['items']

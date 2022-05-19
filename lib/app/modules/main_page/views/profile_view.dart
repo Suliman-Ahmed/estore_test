@@ -117,7 +117,7 @@ class _ProfileViewState extends State<ProfileView> {
                   },
                   secondary: Icon(Icons.language_outlined),
                   activeColor: CustomColors.primary,
-                  title: CustomText(text: 'اللغة'),
+                  title: CustomText(text: 'اللغة',),
                 ),
               ],
             ),
@@ -135,6 +135,7 @@ class _ProfileViewState extends State<ProfileView> {
               child: CustomText(
                 text: 'تسجيل الخروج',
                 textColor: Colors.white,
+                fontFamily: 'GESS',
                 isBoldText: true,
               ),
             ),

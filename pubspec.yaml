@@ -36,5 +36,8 @@ flutter:
     - family: GESS
       fonts: 
         - asset: assets/fonts/GESS.otf
+    - family: TAHO
+      fonts: 
+        - asset: assets/fonts/TAHO.ttf
   uses-material-design: true
 

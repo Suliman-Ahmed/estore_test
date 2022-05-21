@@ -159,7 +159,7 @@ class _DetailPageState extends State<DetailPage> {
                 left: 0,
                 child: SizedBox(
                   height: 30,
-                  width: MediaQuery.of(context).size.width / 2,
+                  width: MediaQuery.of(context).size.width,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: items().length,

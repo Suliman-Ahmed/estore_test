@@ -1,10 +1,13 @@
 import 'package:carousel_pro_nullsafety/carousel_pro_nullsafety.dart';
 import 'package:estore_test/constant/constants.dart';
 import 'package:estore_test/constant/custom_colors.dart';
+import 'package:estore_test/constant/widgets/build_common_block.dart';
 import 'package:estore_test/constant/widgets/custom_text.dart';
+import 'package:estore_test/constant/widgets/grid_list_view_block.dart';
 import 'package:estore_test/constant/widgets/list_view_block.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
 final List<String> imgList = [
@@ -59,33 +62,48 @@ class _HomeViewState extends State<HomeView> {
               buildCarousel(),
 
               /// [Category]
-              buildCate(),
-
-              /// [new Products]
-              buildShowAll('وصلنا حديثا'),
-              buildListOfProducts(Constants.productList, 'phoneTag'),
-
-              /// [new Products]
-              buildShowAll('أجهزة رائدة'),
-              buildListOfProducts(Constants.cablesList, 'chargerTag'),
+              // buildCate(),
+              SizedBox(height: 20),
 
               /// [common sections]
-              Container(
-                margin: EdgeInsets.all(10),
-                child: CustomText(
-                  text: 'أقسام شائعة',
-                  textDirection: TextDirection.rtl,
-                ),
+              CustomText(
+                text: 'أقسام شائعة',
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                fontSize: 22.0,
+                fontFamily: 'GESS',
+                textColor: CustomColors.textColor,
               ),
               buildCommonSections(),
 
-              /// [Starred Products]
+              /// [new Products]
+              CustomText(
+                text: 'وصلنا حديثاً',
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                fontSize: 22.0,
+                fontFamily: 'GESS',
+                textColor: CustomColors.textColor,
+              ),
+              buildListOfProducts(Constants.productList, 'phoneTag'),
+
+              /// [new Products]
+              buildShowAll('أكسسوارات'),
+              buildListOfProducts(Constants.cablesList, 'chargerTag'),
+
+              /// [game Products]
+              buildShowAll('العاب'),
+              buildGridListOfProducts(Constants.productList, 'gameTag'),
+
+              /// [starred Products]
               buildShowAll('مميزة'),
-              buildListOfProducts(Constants.productList, 'gameTag'),
+              buildListOfProducts(Constants.cablesList, 'starTag'),
 
               /// [new Products]
               buildShowAll('كفرات'),
               buildListOfProducts(Constants.cablesList, 'coversTag'),
+
+              /// [power bank]
+              buildShowAll('بنوك الطاقة'),
+              buildGridListOfProducts(Constants.cablesList, 'powerTag'),
             ],
           ),
         ),
@@ -181,6 +199,13 @@ class _HomeViewState extends State<HomeView> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            CustomText(
+              text: text,
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              fontSize: 22.0,
+              fontFamily: 'GESS',
+              textColor: CustomColors.textColor,
+            ),
             Row(
               children: [
                 CustomText(text: 'أظهار الكل'),
@@ -188,7 +213,6 @@ class _HomeViewState extends State<HomeView> {
                 Icon(IconlyLight.arrow_left_2),
               ],
             ),
-            CustomText(text: text),
           ],
         ),
       );
@@ -196,7 +220,7 @@ class _HomeViewState extends State<HomeView> {
   /////////////////////////////////////////////////////////////
   // Build List Of Items
   buildListOfProducts(List items, String tag) => Container(
-        height: 225,
+        height: 260,
         width: double.infinity,
         child: ListView.builder(
           shrinkWrap: true,
@@ -210,6 +234,25 @@ class _HomeViewState extends State<HomeView> {
         ),
       );
 
+  buildGridListOfProducts(List items, String tag) => Container(
+        width: Get.width,
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 0.8,
+          ),
+          shrinkWrap: true,
+          itemCount: items.length,
+          physics: NeverScrollableScrollPhysics(),
+          itemBuilder: (BuildContext context, int index) =>
+              GridListProductBlock(
+                  name: items[index]['name'],
+                  img: items[index]['img'],
+                  price: items[index]['price'],
+                  index: tag + index.toString()),
+        ),
+      );
+
   /////////////////////////////////////////////////////////////
   buildCommonSections() => Container(
         width: double.infinity,
@@ -219,23 +262,9 @@ class _HomeViewState extends State<HomeView> {
           scrollDirection: Axis.horizontal,
           // reverse: true,
           shrinkWrap: true,
-          itemBuilder: (BuildContext context, int index) => Container(
-            width: 75,
-            height: 75,
-            padding: EdgeInsets.all(20),
-            margin: EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              // borderRadius: BorderRadius.circular(10),
-              color: CustomColors.primary,
-              // border: Border.all(width: 0.2, color: Colors.grey),
-            ),
-            child: SvgPicture.asset(
-              Constants.commonIcon[index], color: Colors.white,
-              width: 15,
-              height: 15,
-            ),
-            // child: Image.asset(Constants.commonCategory[index]),
+          itemBuilder: (BuildContext context, int index) =>
+              BuildCommonSectionBlock(
+            index: index,
           ),
         ),
       );

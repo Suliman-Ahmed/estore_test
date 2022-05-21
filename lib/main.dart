@@ -2,6 +2,7 @@ import 'package:estore_test/constant/custom_colors.dart';
 import 'package:estore_test/constant/custom_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:get/get.dart';
 
@@ -25,6 +26,16 @@ class MyApp extends StatelessWidget {
       initialRoute: AppPages.INITIAL,
       theme: CustomTheme.style1(),
       getPages: AppPages.routes,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en', 'US'), 
+        Locale('ar', 'EU'), 
+      ],
+      locale: Locale('ar'),
     );
   }
 }

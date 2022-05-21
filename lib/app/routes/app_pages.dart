@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
 
-import 'package:estore_test/app/modules/home/bindings/home_binding.dart';
-import 'package:estore_test/app/modules/home/views/home_view.dart';
 import 'package:estore_test/app/modules/login/bindings/login_binding.dart';
 import 'package:estore_test/app/modules/login/views/login_view.dart';
 import 'package:estore_test/app/modules/main_page/bindings/main_page_binding.dart';
@@ -15,11 +13,6 @@ class AppPages {
   static const INITIAL = Routes.MAIN_PAGE;
 
   static final routes = [
-    GetPage(
-      name: _Paths.HOME,
-      page: () => HomeView(),
-      binding: HomeBinding(),
-    ),
     GetPage(
       name: _Paths.LOGIN,
       page: () => LoginView(),

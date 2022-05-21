@@ -1,24 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:estore_test/app/modules/main_page/views/detail_view.dart';
 import 'package:estore_test/constant/custom_colors.dart';
-import 'package:estore_test/constant/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
-class ListProductBlock extends StatefulWidget {
+class GridListProductBlock extends StatefulWidget {
   final String? name;
   final String? img;
   final String? price;
   final String? index;
 
-  ListProductBlock({this.name, this.img, this.price, this.index});
+  GridListProductBlock({this.name, this.img, this.price, this.index});
 
   @override
-  ListProductBlockState createState() => ListProductBlockState();
+  GridListProductBlockState createState() => GridListProductBlockState();
 }
 
-class ListProductBlockState extends State<ListProductBlock> {
+class GridListProductBlockState extends State<GridListProductBlock> {
   bool isFav = false;
   @override
   Widget build(BuildContext context) {
@@ -90,7 +89,7 @@ class ListProductBlockState extends State<ListProductBlock> {
               left: 0,
               right: 0,
               child: Container(
-                height: 75,
+                height: 56,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -98,39 +97,19 @@ class ListProductBlockState extends State<ListProductBlock> {
                     bottomRight: Radius.circular(15),
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomText(
-                      text: widget.name!,
-                      overflow: TextOverflow.ellipsis,
-                      fontSize: 18.0,
-                      // style: TextStyle(fontSize: 16),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 6),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomText(
-                            text: widget.price!,
-                            fontSize: 17.0,
-                          ),
-                          CircleAvatar(
-                            radius: 18,
-                            backgroundColor: CustomColors.primary,
-                            child: IconButton(
-                              color: CustomColors.white,
-                              onPressed: () {
-                                print('add to bag');
-                              },
-                              icon: Icon(IconlyBold.bag_2,size: 20,),
-                            ),
-                          ),
-                        ],
+                child: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.name!,
+                        overflow: TextOverflow.ellipsis,
+                        // style: TextStyle(fontSize: 16),
                       ),
-                    )
-                  ],
+                      Text(widget.price!)
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -20,6 +20,8 @@ dependencies:
   iconsax: 0.0.8
   flutter: 
     sdk: flutter
+  flutter_localizations: # Add this line
+    sdk: flutter
 
 dev_dependencies: 
   flutter_test: 

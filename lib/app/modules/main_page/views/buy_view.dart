@@ -12,18 +12,9 @@ import 'package:iconly/iconly.dart';
 class BuyView extends GetView<CartController> {
   String dropdownvalue = '1';
 
-  var items = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-  ];
+  var items = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+
+  TextEditingController couponController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +29,13 @@ class BuyView extends GetView<CartController> {
               ? ListView(children: [
                   /////////////////////////////////////
                   /// List Of Cart Product
-                  buildCartList()
+                  buildCartList(),
                   /////////////////////////////////////
                   /// Cart Price
+                  buildPriceBar(),
+                  /////////////////////////////////////
+                  /// Continue But
+                  buildContinue(),
                 ])
               :
               /////////////////////////////////////
@@ -218,6 +213,110 @@ class BuyView extends GetView<CartController> {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  //////////////////////////////////////////////////////////
+  /// [BUILD PRICE BAR]
+  Widget buildPriceBar() {
+    return Container(
+      width: Get.width,
+      margin: const EdgeInsets.all(20),
+      child: Column(
+        children: [
+          /////////////////////////////////////////
+          // Price
+          ListTile(
+            title: CustomText(
+              text: 'السعر :',
+              textColor: CustomColors.textColor2,
+              fontSize: 16.0,
+            ),
+            trailing: CustomText(
+              text: '1230 \$',
+              textColor: CustomColors.textColor,
+              fontSize: 18.0,
+            ),
+          ),
+          /////////////////////////////////////////
+          /// Coupon
+          Container(
+            width: Get.width,
+            height: 60,
+            decoration: BoxDecoration(
+              border: Border.all(
+                  width: 0.7, color: CustomColors.nonActiveIconColor),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: couponController,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'ادخل الكوبون هنا',
+                      hintStyle: TextStyle(fontFamily: 'GESS'),
+                      alignLabelWithHint: true,
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    print('Coupon');
+                  },
+                  child: CustomText(
+                    text: 'أدخال',
+                    padding: EdgeInsets.all(10),
+                    fontFamily: 'GESS',
+                    textAlign: TextAlign.center,
+                    textColor: CustomColors.primary,
+                  ),
+                )
+              ],
+            ),
+          ),
+          /////////////////////////////////////////
+          /// Final Price
+          ListTile(
+            title: CustomText(
+              text: 'السعر النهائي :',
+              textColor: CustomColors.textColor2,
+              fontSize: 16.0,
+            ),
+            trailing: CustomText(
+              text: '1230 \$',
+              textColor: CustomColors.textColor,
+              fontSize: 18.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  //////////////////////////////////////////////////////////
+  /// [BUILD_CONTINUE_BUTTON]
+  Widget buildContinue() {
+    return InkWell(
+      onTap: (){
+        print('Continue');
+      },
+      child: Container(
+        width: Get.width,
+        height: 45,
+        margin: EdgeInsets.all(15),
+        padding: EdgeInsets.all(10),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8), color: CustomColors.primary),
+        child: CustomText(
+          text: 'أكمال عملية التسوق',
+          textColor: CustomColors.white,
+          isBoldText: true,
+        ),
       ),
     );
   }

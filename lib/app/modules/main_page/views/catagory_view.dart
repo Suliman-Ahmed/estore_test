@@ -1,4 +1,5 @@
 import 'package:estore_test/app/modules/main_page/controllers/main_page_controller.dart';
+import 'package:estore_test/app/modules/main_page/views/product_list_page.dart';
 import 'package:estore_test/constant/constants.dart';
 import 'package:estore_test/constant/custom_colors.dart';
 import 'package:estore_test/constant/widgets/custom_text.dart';
@@ -81,7 +82,7 @@ class CatagoryView extends GetView<MainPageController> {
             trailing: Icon(
               controller.getSubCatItemIndex == index
                   ? Icons.keyboard_arrow_down_rounded
-                  : Icons.keyboard_arrow_right_rounded,
+                  : Icons.keyboard_arrow_left_rounded,
             ),
 
             /// [Function]
@@ -130,7 +131,14 @@ class CatagoryView extends GetView<MainPageController> {
                         .toString(),
                     fontFamily: 'GESS',
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    String title = Constants
+                        .categoryItem[controller.getCatItemIndex]['items']
+                            [controller.getSubCatItemIndex]['items'][index]
+                            ['title']
+                        .toString();
+                    Get.to(ProductListPage(title: '$title'));
+                  },
                 ),
               ),
       ));
@@ -167,7 +175,7 @@ class CatagoryView extends GetView<MainPageController> {
         /// [Trailing]
         trailing: Icon(
           controller.getCatItemIndex == index
-              ? Icons.keyboard_arrow_right_rounded
+              ? Icons.keyboard_arrow_left_rounded
               : Icons.keyboard_arrow_down_rounded,
         ),
 

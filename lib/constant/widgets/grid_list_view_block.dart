@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:estore_test/app/modules/main_page/views/detail_view.dart';
 import 'package:estore_test/constant/custom_colors.dart';
+import 'package:estore_test/constant/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
@@ -89,7 +90,7 @@ class GridListProductBlockState extends State<GridListProductBlock> {
               left: 0,
               right: 0,
               child: Container(
-                height: 56,
+                height: 80,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -102,12 +103,38 @@ class GridListProductBlockState extends State<GridListProductBlock> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        widget.name!,
+                      CustomText(
+                        text: widget.name!,
                         overflow: TextOverflow.ellipsis,
                         // style: TextStyle(fontSize: 16),
                       ),
-                      Text(widget.price!)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 6),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomText(
+                              text: widget.price!,
+                              fontSize: 17.0,
+                            ),
+                            CircleAvatar(
+                              radius: 18,
+                              backgroundColor: CustomColors.primary,
+                              child: IconButton(
+                                color: CustomColors.white,
+                                onPressed: () {
+                                  print('add to bag');
+                                },
+                                icon: Icon(
+                                  IconlyBold.bag_2,
+                                  size: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),

@@ -4,6 +4,8 @@ import 'package:estore_test/constant/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:iconly/iconly.dart';
+import 'package:iconsax/iconsax.dart';
 
 class ProfileView extends StatefulWidget {
   @override
@@ -14,6 +16,26 @@ class _ProfileViewState extends State<ProfileView> {
   bool darkMode = false;
 
   bool lang = false;
+
+  List<Languagess> langs = [
+    Languagess('ar', 'عربي'),
+    Languagess('en', 'English'),
+  ];
+
+  List<Currency> curency = [
+    Currency('عراقي', 'ع.د'),
+    Currency('دولار', '\$'),
+  ];
+
+  late Languagess selectedLang;
+  late Currency selectedCurency;
+
+  @override
+  void initState() {
+    selectedLang = langs.first;
+    selectedCurency = curency.first;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +56,8 @@ class _ProfileViewState extends State<ProfileView> {
       backgroundColor: Colors.white,
 
       /// [Body]
-      body: Column(
+      body: ListView(
+        physics: BouncingScrollPhysics(),
         children: [
           Container(
             margin: const EdgeInsets.all(10.0),
@@ -43,7 +66,9 @@ class _ProfileViewState extends State<ProfileView> {
                 /// [Avatar]
                 CircleAvatar(
                   radius: 45,
-                  child: Image(image: MeowatarImage.fromString("a@a.com")),
+                  backgroundColor: Colors.transparent,
+                  backgroundImage:
+                      NetworkImage('https://picsum.photos/200/300?random'),
                 ),
                 SizedBox(
                   width: 20,
@@ -82,7 +107,7 @@ class _ProfileViewState extends State<ProfileView> {
                 ListTile(
                   leading: Icon(Icons.lock_open_rounded),
                   title: CustomText(text: 'Password'),
-                  subtitle: CustomText(text: 'test@gmail.com'),
+                  subtitle: CustomText(text: '********************'),
                 ),
               ],
             ),
@@ -97,27 +122,85 @@ class _ProfileViewState extends State<ProfileView> {
                 color: Colors.white, borderRadius: BorderRadius.circular(15)),
             child: Column(
               children: [
-                SwitchListTile(
-                  value: darkMode,
-                  onChanged: (value) {
-                    setState(() {
-                      darkMode = value;
-                    });
-                  },
-                  secondary: Icon(Icons.language_outlined),
-                  activeColor: CustomColors.primary,
-                  title: CustomText(text: 'الوضع الليلي'),
+                //////////////////////////////////////////////////////////
+                /// Previus Orders
+                ListTile(
+                  leading: Icon(Iconsax.clipboard_text5),
+                  title: CustomText(
+                    text: 'طلباتي',
+                  ),
                 ),
-                SwitchListTile(
-                  value: lang,
-                  onChanged: (value) {
-                    setState(() {
-                      lang = value;
-                    });
-                  },
-                  secondary: Icon(Icons.language_outlined),
-                  activeColor: CustomColors.primary,
-                  title: CustomText(text: 'اللغة',),
+                //////////////////////////////////////////////////////////
+                /// My Info
+                ListTile(
+                  leading: Icon(Iconsax.location5),
+                  title: CustomText(
+                    text: 'معلوماتي',
+                  ),
+                ),
+                //////////////////////////////////////////////////////////
+                /// Currency
+                ListTile(
+                  leading: Icon(Iconsax.coin_15),
+                  title: CustomText(
+                    text: 'العملة',
+                  ),
+                  trailing: DropdownButtonHideUnderline(
+                    child: DropdownButton<Currency>(
+                      hint: Text("Select item"),
+                      value: selectedCurency,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedCurency = value!;
+                        });
+                      },
+                      items: curency.map((Currency cur) {
+                        return DropdownMenuItem<Currency>(
+                          value: cur,
+                          child: Row(
+                            children: <Widget>[
+                              CustomText(
+                                text: cur.curncy,
+                              ),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+
+                ///////////////////////////////////////////////////////////
+                /// Languages
+                ListTile(
+                  leading: Icon(Iconsax.translate5),
+                  title: CustomText(
+                    text: 'اللغة',
+                  ),
+                  trailing: DropdownButtonHideUnderline(
+                    child: DropdownButton<Languagess>(
+                      hint: Text("Select item"),
+                      value: selectedLang,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedLang = value!;
+                          Get.updateLocale(Locale(value.code, value.lang));
+                        });
+                      },
+                      items: langs.map((Languagess lang) {
+                        return DropdownMenuItem<Languagess>(
+                          value: lang,
+                          child: Row(
+                            children: <Widget>[
+                              CustomText(
+                                text: lang.lang,
+                              ),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -144,4 +227,16 @@ class _ProfileViewState extends State<ProfileView> {
       ),
     );
   }
+}
+
+class Languagess {
+  final String code;
+  final String lang;
+  Languagess(this.code, this.lang);
+}
+
+class Currency {
+  final String curncy;
+  final String sign;
+  Currency(this.curncy, this.sign);
 }

@@ -14,7 +14,7 @@ class BuildCommonSectionBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Get.to(() => ProductListPage());
+        Get.to(() => ProductListPage(title: '${index+1} Cat',));
       },
       child: Container(
         width: 75,

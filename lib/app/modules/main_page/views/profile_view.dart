@@ -1,4 +1,5 @@
 import 'package:cat_avatar_generator/cat_avatar_generator.dart';
+import 'package:estore_test/app/modules/main_page/views/chat_ui.dart';
 import 'package:estore_test/constant/custom_colors.dart';
 import 'package:estore_test/constant/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -117,11 +118,22 @@ class _ProfileViewState extends State<ProfileView> {
           Container(
             width: Get.width,
             padding: EdgeInsets.all(15),
-            margin: EdgeInsets.all(15),
+            margin: EdgeInsets.fromLTRB(15,0,15,15),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(15)),
             child: Column(
               children: [
+                /////////////////////////////////////////////////////////
+                /// 
+                ListTile(
+                  onTap: () {
+                    Get.to(() => ChatPage());
+                  },
+                  leading: Icon(Iconsax.message),
+                  title: CustomText(
+                    text: 'ملاحظات او شكاوي',
+                  ),
+                ),
                 //////////////////////////////////////////////////////////
                 /// Previus Orders
                 ListTile(

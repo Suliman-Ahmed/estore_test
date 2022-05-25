@@ -1,4 +1,5 @@
 import 'package:carousel_pro_nullsafety/carousel_pro_nullsafety.dart';
+import 'package:estore_test/app/modules/main_page/views/drawer.dart';
 import 'package:estore_test/constant/constants.dart';
 import 'package:estore_test/constant/custom_colors.dart';
 import 'package:estore_test/constant/widgets/build_common_block.dart';
@@ -42,8 +43,8 @@ class _HomeViewState extends State<HomeView> {
         elevation: 0,
       ),
 
-      ///
-      drawer: Drawer(),
+      //* [ Drawer ]
+      drawer: CustomDrawer(),
 
       ///
       body: SafeArea(

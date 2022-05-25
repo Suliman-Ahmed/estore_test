@@ -1,5 +1,6 @@
 import 'package:cat_avatar_generator/cat_avatar_generator.dart';
 import 'package:estore_test/app/modules/main_page/views/chat_ui.dart';
+import 'package:estore_test/app/modules/main_page/views/drawer.dart';
 import 'package:estore_test/constant/custom_colors.dart';
 import 'package:estore_test/constant/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,7 @@ class _ProfileViewState extends State<ProfileView> {
         elevation: 0,
       ),
 
-      drawer: Drawer(),
+      drawer: CustomDrawer(),
 
       /// [Background Color]
       backgroundColor: Colors.white,
